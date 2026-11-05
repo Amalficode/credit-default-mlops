@@ -16,3 +16,4 @@ __pycache__/
 /reports/*
 !/reports/.gitignore
 !/reports/test_metrics.json
+!/reports/drift_report.json
