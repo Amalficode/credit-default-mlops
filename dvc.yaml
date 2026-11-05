@@ -1,0 +1,33 @@
+stages:
+  prepare:
+    cmd: python -m src.data.prepare
+    deps:
+      - data/raw/UCI_Credit_Card.csv
+      - src/data/prepare.py
+      - src/validation/validate_data.py
+      - src/features/build_features.py
+      - requirements.txt
+    params:
+      - params.json:
+          - prepare.test_size
+          - prepare.random_state
+    outs:
+      - data/processed
+
+  train:
+    cmd: python -m src.models.train
+    deps:
+      - data/processed
+      - src/models/train.py
+      - src/models/pipeline.py
+      - src/features/build_features.py
+      - src/validation/validate_data.py
+      - requirements.txt
+    params:
+      - params.json:
+          - train.C
+          - train.threshold
+    outs:
+      - models/reproduced
+    metrics:
+      - reports/reproduced_metrics.json

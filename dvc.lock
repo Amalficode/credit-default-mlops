@@ -1,0 +1,77 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python -m src.data.prepare
+    deps:
+    - path: data/raw/UCI_Credit_Card.csv
+      hash: md5
+      md5: 940b416bb13a9b24bb5c9e1589284005
+      size: 2862995
+    - path: requirements.txt
+      hash: md5
+      md5: fbf14d6d0a13df1bdcd30028cb01917e
+      size: 161
+    - path: src/data/prepare.py
+      hash: md5
+      md5: 488224ef7c48d69e7ceef02ce97c1afa
+      size: 2193
+    - path: src/features/build_features.py
+      hash: md5
+      md5: 8e91dc9219056ea30cf494f36d171ddf
+      size: 1942
+    - path: src/validation/validate_data.py
+      hash: md5
+      md5: 10dc34e4095e4d2c9a2246bd819f6c09
+      size: 5050
+    params:
+      params.json:
+        prepare.random_state: 42
+        prepare.test_size: 0.2
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: c655f0fa70132613b47433814c82aba9.dir
+      size: 3647919
+      nfiles: 3
+  train:
+    cmd: python -m src.models.train
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: c655f0fa70132613b47433814c82aba9.dir
+      size: 3647919
+      nfiles: 3
+    - path: requirements.txt
+      hash: md5
+      md5: fbf14d6d0a13df1bdcd30028cb01917e
+      size: 161
+    - path: src/features/build_features.py
+      hash: md5
+      md5: 8e91dc9219056ea30cf494f36d171ddf
+      size: 1942
+    - path: src/models/pipeline.py
+      hash: md5
+      md5: ba3400b357aadd771efad13bc108c422
+      size: 1705
+    - path: src/models/train.py
+      hash: md5
+      md5: faad0805268d23bb35dfc515a38850e7
+      size: 4846
+    - path: src/validation/validate_data.py
+      hash: md5
+      md5: 10dc34e4095e4d2c9a2246bd819f6c09
+      size: 5050
+    params:
+      params.json:
+        train.C: 0.1
+        train.threshold: 0.3
+    outs:
+    - path: models/reproduced
+      hash: md5
+      md5: f9214fcd97997666a4e1686971d24d7c.dir
+      size: 4314
+      nfiles: 2
+    - path: reports/reproduced_metrics.json
+      hash: md5
+      md5: 2e2a00d08046851311f6afc7627e1484
+      size: 150

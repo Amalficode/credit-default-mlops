@@ -1,0 +1,11 @@
+**
+!Dockerfile
+!requirements-serve.txt
+!src/
+!src/**
+!models/
+!models/reproduced/
+!models/reproduced/model.joblib
+!models/reproduced/model_config.json
+**/__pycache__/
+**/*.pyc
