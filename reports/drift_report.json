@@ -1,0 +1,134 @@
+{
+  "generated_at_utc": "2026-11-05T20:45:44.586155+00:00",
+  "scenario": "held_out_test_sample_simulation",
+  "api_url": "http://127.0.0.1:8000",
+  "sample_seed": 42,
+  "requested_sample_size": 200,
+  "current_source_rows": 6000,
+  "model_run_id": "d78fa29675404ba4b830def45b53cce5",
+  "decision_threshold": 0.3,
+  "all_api_predictions_match_saved_model": true,
+  "max_api_probability_difference": 0.0,
+  "reference_mean_probability": 0.22121992418247866,
+  "current_mean_probability": 0.22837793083138522,
+  "psi": {
+    "value": 0.03965831478603082,
+    "level": "low",
+    "binning": "training_quantiles",
+    "requested_bins": 10,
+    "actual_bins": 10,
+    "pseudocount": 0.5,
+    "reference_rows": 24000,
+    "current_rows": 200,
+    "thresholds": {
+      "moderate": 0.1,
+      "high": 0.25
+    },
+    "bins": [
+      {
+        "left": 0.0,
+        "right": 0.07666769676620079,
+        "reference_count": 2400,
+        "current_count": 15,
+        "reference_share": 0.1,
+        "current_share": 0.07560975609756097,
+        "psi_contribution": 0.0068191429809551654
+      },
+      {
+        "left": 0.07666769676620079,
+        "right": 0.0967450251858182,
+        "reference_count": 2400,
+        "current_count": 20,
+        "reference_share": 0.1,
+        "current_share": 0.1,
+        "psi_contribution": 0.0
+      },
+      {
+        "left": 0.0967450251858182,
+        "right": 0.11121915101287436,
+        "reference_count": 2400,
+        "current_count": 24,
+        "reference_share": 0.1,
+        "current_share": 0.11951219512195121,
+        "psi_contribution": 0.0034780142713428035
+      },
+      {
+        "left": 0.11121915101287436,
+        "right": 0.12394964201916527,
+        "reference_count": 2400,
+        "current_count": 24,
+        "reference_share": 0.1,
+        "current_share": 0.11951219512195121,
+        "psi_contribution": 0.0034780142713428035
+      },
+      {
+        "left": 0.12394964201916527,
+        "right": 0.13835443564148836,
+        "reference_count": 2400,
+        "current_count": 22,
+        "reference_share": 0.1,
+        "current_share": 0.10975609756097561,
+        "psi_contribution": 0.0009081992494245052
+      },
+      {
+        "left": 0.13835443564148836,
+        "right": 0.16200393669129115,
+        "reference_count": 2400,
+        "current_count": 19,
+        "reference_share": 0.1,
+        "current_share": 0.0951219512195122,
+        "psi_contribution": 0.0002439532710959096
+      },
+      {
+        "left": 0.16200393669129115,
+        "right": 0.21641184665971158,
+        "reference_count": 2400,
+        "current_count": 22,
+        "reference_share": 0.1,
+        "current_share": 0.10975609756097561,
+        "psi_contribution": 0.0009081992494245052
+      },
+      {
+        "left": 0.21641184665971158,
+        "right": 0.3143701268735401,
+        "reference_count": 2400,
+        "current_count": 16,
+        "reference_share": 0.1,
+        "current_share": 0.08048780487804878,
+        "psi_contribution": 0.004235404980250296
+      },
+      {
+        "left": 0.3143701268735401,
+        "right": 0.5740813132231356,
+        "reference_count": 2400,
+        "current_count": 13,
+        "reference_share": 0.1,
+        "current_share": 0.06585365853658537,
+        "psi_contribution": 0.014264128804389516
+      },
+      {
+        "left": 0.5740813132231356,
+        "right": 1.0,
+        "reference_count": 2400,
+        "current_count": 25,
+        "reference_share": 0.1,
+        "current_share": 0.12439024390243902,
+        "psi_contribution": 0.005323257707805315
+      }
+    ]
+  },
+  "input_sha256": {
+    "train": "6049cf762967e0dd67adfa471f360e77871072154439e2751bb9816c71f3cfc0",
+    "current": "882572d334abc1397141b4f466d03a4a0af21755960a898e6b78effe3a536db1",
+    "model": "14d3264005fa6758692e66fa9b22003594749395b8cbe70eae36201edf4e5a8f",
+    "config": "5e9d1ab307badebf16c812e1e3bed62fad93c96d57f38fcf03602815e4e45cbb"
+  },
+  "notes": [
+    "Использована часть отложенного теста как учебная имитация новых данных.",
+    "Границы интервалов построены только по обучающим вероятностям.",
+    "Псевдочастота 0.5 обеспечивает конечный PSI при пустых интервалах.",
+    "Пороги 0.1 и 0.25 условны; PSI зависит от размера выборки и интервалов.",
+    "PSI отражает сдвиг распределения оценок, а не качество классификации.",
+    "Модель и порог не переобучаются и не изменяются этим скриптом."
+  ]
+}
