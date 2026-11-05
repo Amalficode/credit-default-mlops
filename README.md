@@ -224,6 +224,7 @@ Invoke-RestMethod -Uri http://127.0.0.1:8000/predict -Method Post -ContentType "
 - Контейнер запущен; `/health` вернул `{"status":"ok","model_loaded":true}`.
 - Для `examples/request.json` получена вероятность `0.7033040958180882`,
   класс `1` и порог `0.3` — результат совпал с проверенным примером в Colab.
+- Запрос с `PAY_AMT1=-100` отклонён с HTTP `422`.
 
 Документация работающего API: `http://127.0.0.1:8000/docs`.
 
