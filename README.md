@@ -6,7 +6,7 @@
 ## Данные и модель
 
 Используется Default of Credit Card Clients: 30 000 наблюдений.
-Цель — `default.payment.next.month`: `1` означает дефолт, `0` — отсутствие дефолта.
+Цель -  `default.payment.next.month`: `1` означает дефолт, `0` -  отсутствие дефолта.
 `ID` исключается из входов модели.
 Источник: [UCI Machine Learning Repository](https://doi.org/10.24432/C55S3H).
 
