@@ -203,15 +203,39 @@ GitHub Actions запускает проверки при push в `main`, pull r
 ## Docker
 
 Для сборки нужны Docker Engine и оба файла из `models/reproduced`.
+Команды выполняются из корня проекта при запущенном Docker Desktop.
 
-```bash
-docker build -t credit-default-api:local .
-docker run --rm -p 8000:8000 credit-default-api:local
+```powershell
+docker build --progress=plain -t credit-default-api:local .
+docker run --rm -d --name credit-default-api -p 127.0.0.1:8000:8000 credit-default-api:local
 ```
 
+После запуска приложения проверка из Windows PowerShell:
+
+```powershell
+Invoke-RestMethod http://127.0.0.1:8000/health | ConvertTo-Json
+$body = Get-Content .\examples\request.json -Raw
+Invoke-RestMethod -Uri http://127.0.0.1:8000/predict -Method Post -ContentType "application/json" -Body $body | ConvertTo-Json
+```
+
+Локальная проверка в Windows выполнена 5 ноября 2026 года:
+
+- Образ `credit-default-api:local` успешно собран.
+- Контейнер запущен; `/health` вернул `{"status":"ok","model_loaded":true}`.
+- Для `examples/request.json` получена вероятность `0.7033040958180882`,
+  класс `1` и порог `0.3` — результат совпал с проверенным примером в Colab.
+
+Документация работающего API: `http://127.0.0.1:8000/docs`.
+
+Остановка контейнера:
+
+```powershell
+docker stop credit-default-api
+```
+
+Флаг `--rm` удаляет контейнер после остановки; собранный образ сохраняется.
 Образ запускает Uvicorn от непривилегированного пользователя и содержит
-healthcheck для `/health`. В Colab Docker CLI отсутствует: Dockerfile подготовлен,
-но сборка образа и запуск контейнера пока не проверены.
+healthcheck для `/health`.
 Текущий CI выполняет проверки Python; сборка Docker в него не включена.
 
 ## Статус проекта
@@ -221,5 +245,6 @@ healthcheck для `/health`. В Colab Docker CLI отсутствует: Docker
 работа API, 10 тестов, Black, Flake8 и актуальность DVC-пайплайна.
 
 GitHub Actions: установка зависимостей, Black, Flake8 и pytest успешно прошли.
-Остаётся проверить сборку и запуск контейнера Docker.
+Docker: локально подтверждены сборка образа, запуск контейнера, ответ `/health`
+и совпадение прогноза на сохранённом примере с результатом в Colab.
 Мониторинг дрейфа пока не реализован. Проект является учебным прототипом.
